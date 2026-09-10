@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SIAE - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        body.login-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--background);
+            padding: 20px;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+
+        .login-brand .logo-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: var(--green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .login-brand strong {
+            display: block;
+            font-size: 20px;
+            color: var(--text);
+        }
+
+        .login-brand small {
+            display: block;
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .login-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .login-card > span {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .3px;
+        }
+
+        .login-card h1 {
+            font-size: 24px;
+            margin: 8px 0 6px;
+            color: #182540;
+        }
+
+        .login-card > p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .user-type-toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 5px;
+            margin-bottom: 24px;
+        }
+
+        .user-type-btn {
+            border: 0;
+            background: transparent;
+            padding: 11px 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: .2s;
+        }
+
+        .user-type-btn i {
+            font-size: 14px;
+        }
+
+        .user-type-btn.active {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 6px 16px rgba(8,122,50,.25);
+        }
+
+        .login-form {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .login-form.active-form {
+            display: flex;
+        }
+
+        .password-field {
+            position: relative;
+        }
+
+        .password-field .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: 0;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .login-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .login-options label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .login-options a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .login-options a:hover {
+            text-decoration: underline;
+        }
+
+        .login-submit {
+            margin-top: 6px;
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .login-error {
+            display: none;
+            align-items: center;
+            gap: 9px;
+            background: #ffe8e8;
+            color: #c53030;
+            border-radius: 10px;
+            padding: 11px 13px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .login-error.show {
+            display: flex;
+        }
+
+        .demo-hint {
+            margin-top: 18px;
+            background: var(--green-light);
+            border: 1px dashed #a8d5b8;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 11.5px;
+            color: #175c33;
+            line-height: 1.6;
+        }
+
+        .demo-hint strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: var(--green-dark);
+        }
+
+        .demo-hint code {
+            background: rgba(255,255,255,.7);
+            padding: 1px 6px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .login-footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 22px;
+        }
+
+        @media(max-width: 420px) {
+
+            .login-card {
+                padding: 22px 18px;
+                border-radius: 16px;
+            }
+
+            .login-brand strong {
+                font-size: 18px;
+            }
+
+            .user-type-toggle {
+                grid-template-columns: 1fr;
+            }
+
+            .login-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body class="login-body">
+
+    <div class="login-wrapper">
+
+        <div class="login-brand">
+            <div class="logo-box">IF</div>
+            <div>
+                <strong>SIAE</strong>
+                <small>Campus São José de Ribamar</small>
+            </div>
+        </div>
+
+        <div class="login-card">
+
+            <span>ACESSO AO SISTEMA</span>
+            <h1>Bem-vindo de volta</h1>
+            <p>Selecione seu perfil e entre com suas credenciais para continuar.</p>
+
+            <div class="user-type-toggle">
+                <button type="button" class="user-type-btn active" data-type="aluno">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    Aluno
+                </button>
+                <button type="button" class="user-type-btn" data-type="coordenador">
+                    <i class="fa-solid fa-user-tie"></i>
+                    Coordenador
+                </button>
+            </div>
+
+            <div class="login-error" id="loginError">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span>Usuário ou senha inválidos. Verifique os dados de teste abaixo.</span>
+            </div>
+
+           
+            <form class="login-form active-form" id="formAluno" data-role="aluno">
+
+                <div class="form-group">
+                    <label for="alunoMatricula">Matrícula</label>
+                    <input type="text" id="alunoMatricula" placeholder="Ex: 2024001122" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="alunoSenha">Senha</label>
+                    <div class="password-field">
+                        <input type="password" id="alunoSenha" placeholder="Digite sua senha" required>
+                        <button type="button" class="toggle-password"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="login-options">
+                    <label><input type="checkbox"> Lembrar de mim</label>
+                    <a href="#">Esqueci minha senha</a>
+                </div>
+
+                <button type="submit" class="primary-btn login-submit">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Entrar como Aluno
+                </button>
+
+                <div class="demo-hint">
+                    <strong>Login de teste (Aluno)</strong>
+                    Matrícula: <code>2024001122</code><br>
+                    Senha: <code>aluno123</code>
+                </div>
+
+            </form>
+
+          
+            <form class="login-form" id="formCoordenador" data-role="coordenador">
+
+                <div class="form-group">
+                    <label for="coordEmail">E-mail institucional</label>
+                    <input type="email" id="coordEmail" placeholder="Ex: coordenacao@ifma.edu.br" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="coordSenha">Senha</label>
+                    <div class="password-field">
+                        <input type="password" id="coordSenha" placeholder="Digite sua senha" required>
+                        <button type="button" class="toggle-password"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="login-options">
+                    <label><input type="checkbox"> Lembrar de mim</label>
+                    <a href="#">Esqueci minha senha</a>
+                </div>
+
+                <button type="submit" class="primary-btn login-submit">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Entrar como Coordenador
+                </button>
+
+                <div class="demo-hint">
+                    <strong>Login de teste (Coordenador)</strong>
+                    E-mail: <code>coordenacao@ifma.edu.br</code><br>
+                    Senha: <code>coord123</code>
+                </div>
+
+            </form>
+
+        </div>
+
+        <p class="login-footer">© 2026 SIAE · Sistema Integrado de Assistência ao Estudante</p>
+
+    </div>
+
+    <script>
+
+       
+        const USUARIOS_TESTE = {
+            aluno: [
+                { matricula: "2024001122", senha: "aluno123", nome: "Ana Silva" },
+                { matricula: "2023004455", senha: "aluno456", nome: "Bruno Costa" }
+            ],
+            coordenador: [
+                { email: "coordenacao@ifma.edu.br", senha: "coord123", nome: "Profa. Mariana Alves" },
+                { email: "coord.ti@ifma.edu.br", senha: "coord456", nome: "Prof. Ricardo Nunes" }
+            ]
+        };
+
+        const toggleBtns = document.querySelectorAll(".user-type-btn");
+        const forms = document.querySelectorAll(".login-form");
+        const loginError = document.getElementById("loginError");
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                toggleBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                const type = btn.dataset.type;
+
+                forms.forEach(f => f.classList.remove("active-form"));
+                document.getElementById(
+                    type === "aluno" ? "formAluno" : "formCoordenador"
+                ).classList.add("active-form");
+
+                loginError.classList.remove("show");
+            });
+        });
+
+        document.querySelectorAll(".toggle-password").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const input = btn.previousElementSibling;
+                const icon = btn.querySelector("i");
+                if (input.type === "password") {
+                    input.type = "text";
+                    icon.classList.replace("fa-eye", "fa-eye-slash");
+                } else {
+                    input.type = "password";
+                    icon.classList.replace("fa-eye-slash", "fa-eye");
+                }
+            });
+        });
+
+        document.getElementById("formAluno").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const matricula = document.getElementById("alunoMatricula").value.trim();
+            const senha = document.getElementById("alunoSenha").value.trim();
+
+            const usuario = USUARIOS_TESTE.aluno.find(
+                u => u.matricula === matricula && u.senha === senha
+            );
+
+            if (usuario) {
+                efetuarLogin("aluno", usuario);
+            } else {
+                mostrarErro();
+            }
+        });
+
+        document.getElementById("formCoordenador").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("coordEmail").value.trim().toLowerCase();
+            const senha = document.getElementById("coordSenha").value.trim();
+
+            const usuario = USUARIOS_TESTE.coordenador.find(
+                u => u.email.toLowerCase() === email && u.senha === senha
+            );
+
+            if (usuario) {
+                efetuarLogin("coordenador", usuario);
+            } else {
+                mostrarErro();
+            }
+        });
+
+        function mostrarErro() {
+            loginError.classList.add("show");
+        }
+
+        function efetuarLogin(perfil, usuario) {
+          
+            sessionStorage.setItem("siae_perfil", perfil);
+            sessionStorage.setItem("siae_usuario", usuario.nome);
+
+            
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+</html>

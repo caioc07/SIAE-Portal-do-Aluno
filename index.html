@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SIAE - Portal do Aluno</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="app">
+
+   
+
+    <aside class="sidebar">
+
+        <div class="logo-area">
+
+            <div class="logo-box">
+                IF
+            </div>
+
+            <div>
+                <strong>SIAE</strong>
+                <small>Campus São José de Ribamar</small>
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <button class="menu-item active" data-section="dashboard">
+                <i class="fa-solid fa-house"></i>
+                <span>Painel</span>
+            </button>
+
+            <button class="menu-item" data-section="agenda">
+                <i class="fa-regular fa-calendar"></i>
+                <span>Agenda</span>
+            </button>
+
+            <button class="menu-item" data-section="servicos">
+                <i class="fa-solid fa-plus"></i>
+                <span>Serviços</span>
+            </button>
+
+            <button class="menu-item" data-section="solicitacoes">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Minhas solicitações</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button class="menu-item" id="settingsBtn" type="button">
+                <i class="fa-solid fa-gear"></i>
+                <span>Configuração</span>
+            </button>
+
+            <button class="menu-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Sair</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+   
+
+    <main class="main">
+
+        
+
+        <header class="topbar">
+
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="topbar-title">
+                <strong>Painel de Serviços</strong>
+                <span>Portal do aluno</span>
+            </div>
+
+            <div class="user-area">
+
+                <div class="notification" id="notificationBtn">
+
+                    <i class="fa-regular fa-bell"></i>
+                    <span id="notificationBadge">0</span>
+
+                    <div class="notification-panel" id="notificationPanel">
+
+                        <div class="notification-panel-header">
+                            <h3>Notificações</h3>
+                            <button class="link-btn" id="viewAllRequests" type="button">
+                                Ver todas
+                            </button>
+                        </div>
+
+                        <div class="notification-list" id="notificationList"></div>
+
+                    </div>
+
+                </div>
+
+                <span>Olá, estudante!</span>
+
+                <div class="avatar">
+                    A
+                </div>
+
+            </div>
+
+        </header>
+
+
+       
+
+        <section class="section active-section" id="dashboard">
+
+            <div class="welcome">
+
+                <span>ASSISTENTE DE ALUNOS</span>
+
+                <h1>Olá! Como podemos ajudar?</h1>
+
+                <p>
+                    Acesse rapidamente o agendamento da quadra poliesportiva,
+                    solicite materiais acadêmicos ou registre um pedido formal
+                    de segunda chamada.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="services-card">
+
+                    <div class="card-header">
+                        <h2>Serviços disponíveis</h2>
+                        <p>Escolha uma opção para iniciar sua solicitação.</p>
+                    </div>
+
+
+                    <div class="service-grid">
+
+                        <button class="service-card"
+                                data-service="quadra">
+
+                            <div class="service-icon">
+                                <i class="fa-regular fa-calendar-check"></i>
+                            </div>
+
+                            <div>
+                                <h3>Agendar a quadra</h3>
+
+                                <p>
+                                    Consulte horários disponíveis e reserve
+                                    a quadra poliesportiva.
+                                </p>
+
+                                <span class="tag">Online</span>
+                            </div>
+
+                        </button>
+
+
+                        <button class="service-card"
+                                data-service="materiais">
+
+                            <div class="service-icon">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+
+                            <div>
+                                <h3>Solicitar materiais</h3>
+
+                                <p>
+                                    Peça cartolina, pincéis, papel e outros
+                                    insumos acadêmicos.
+                                </p>
+
+                                <span class="tag">Rápido</span>
+                            </div>
+
+                        </button>
+
+
+                        <button class="service-card"
+                                data-service="segunda-chamada">
+
+                            <div class="service-icon">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+
+                            <div>
+                                <h3>2ª chamada</h3>
+
+                                <p>
+                                    Envie um requerimento formal para solicitar
+                                    uma nova avaliação.
+                                </p>
+
+                                <span class="tag">Requerimento</span>
+                            </div>
+
+                        </button>
+
+
+                        <button class="service-card"
+                                data-service="solicitacoes">
+
+                            <div class="service-icon">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+
+                            <div>
+                                <h3>Acompanhar pedidos</h3>
+
+                                <p>
+                                    Veja o status das solicitações feitas
+                                    pelo portal.
+                                </p>
+
+                                <span class="tag">Consultar</span>
+                            </div>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                
+
+                <div class="quick-card">
+
+                    <h2>Acesso rápido</h2>
+
+                    <p>Informações do atendimento.</p>
+
+
+                    <div class="quick-item">
+
+                        <i class="fa-regular fa-clock"></i>
+
+                        <div>
+                            <strong>Atendimento</strong>
+                            <small>Seg. a sex. · 08h às 17h</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-item">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <div>
+                            <strong>Campus</strong>
+                            <small>São José de Ribamar</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-item">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        <div>
+                            <strong>Solicitações digitais</strong>
+                            <small>Sem necessidade de impressão</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        
+
+        <section class="section" id="agenda">
+
+            <div class="page-title">
+
+                <div>
+                    <span>ORGANIZAÇÃO</span>
+                    <h1>Minha agenda</h1>
+                    <p>
+                        Consulte seus compromissos e adicione novos eventos.
+                    </p>
+                </div>
+
+                <button class="primary-btn" id="addEventBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Novo compromisso
+                </button>
+
+            </div>
+
+
+            <div class="calendar-layout">
+
+                <div class="calendar-card">
+
+                    <div class="calendar-header">
+
+                        <button id="prevMonth">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <h2 id="calendarMonth"></h2>
+
+                        <button id="nextMonth">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="weekdays">
+
+                        <span>Dom</span>
+                        <span>Seg</span>
+                        <span>Ter</span>
+                        <span>Qua</span>
+                        <span>Qui</span>
+                        <span>Sex</span>
+                        <span>Sáb</span>
+
+                    </div>
+
+
+                    <div class="calendar-days" id="calendarDays"></div>
+
+                </div>
+
+
+                
+
+                <div class="day-agenda">
+
+                    <div class="day-agenda-header">
+
+                        <span>AGENDA</span>
+
+                        <h2 id="selectedDateTitle">
+                            Compromissos
+                        </h2>
+
+                    </div>
+
+                    <div id="eventsList" class="events-list"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        
+
+        <section class="section" id="servicos">
+
+            <div class="page-title">
+
+                <div>
+                    <span>ASSISTENTE DE ALUNOS</span>
+                    <h1>Serviços</h1>
+                    <p>
+                        Escolha uma das opções disponíveis.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="large-service-grid">
+
+                <button class="large-service-card"
+                        data-service="quadra">
+
+                    <i class="fa-regular fa-calendar-check"></i>
+
+                    <div>
+                        <h2>Agendar a quadra</h2>
+                        <p>
+                            Faça uma reserva para utilização da
+                            quadra poliesportiva.
+                        </p>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right arrow"></i>
+
+                </button>
+
+
+                <button class="large-service-card"
+                        data-service="segunda-chamada">
+
+                    <i class="fa-solid fa-file-circle-exclamation"></i>
+
+                    <div>
+                        <h2>Solicitar 2ª chamada</h2>
+                        <p>
+                            Solicite uma nova avaliação caso tenha
+                            perdido uma prova.
+                        </p>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right arrow"></i>
+
+                </button>
+
+
+                <button class="large-service-card"
+                        data-service="materiais">
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                    <div>
+                        <h2>Solicitar materiais</h2>
+                        <p>
+                            Solicite materiais necessários para
+                            suas atividades acadêmicas.
+                        </p>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right arrow"></i>
+
+                </button>
+
+
+                <button class="large-service-card"
+                        data-service="solicitacoes">
+
+                    <i class="fa-solid fa-list-check"></i>
+
+                    <div>
+                        <h2>Acompanhar solicitações</h2>
+                        <p>
+                            Consulte os pedidos enviados e seus status.
+                        </p>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right arrow"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+       
+
+        <section class="section" id="solicitacoes">
+
+            <div class="page-title">
+
+                <div>
+                    <span>ACOMPANHAMENTO</span>
+                    <h1>Minhas solicitações</h1>
+                    <p>
+                        Consulte os pedidos enviados pelo portal.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div id="requestsContainer" class="requests-container"></div>
+
+        </section>
+
+
+        <footer>
+            IFMA · Assistente de alunos · Painel de Serviços
+        </footer>
+
+    </main>
+
+</div>
+
+
+
+
+<div class="modal-overlay" id="modal">
+
+    <div class="modal">
+
+        <button class="close-modal" id="closeModal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+
+       
+
+        <div class="modal-content" id="quadraForm">
+
+            <div class="modal-title">
+
+                <div class="modal-icon green">
+                    <i class="fa-regular fa-calendar-check"></i>
+                </div>
+
+                <div>
+                    <span>AGENDAMENTO</span>
+                    <h2>Agendar a quadra</h2>
+                </div>
+
+            </div>
+
+
+            <form id="courtForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Data</label>
+
+                        <input
+                            type="date"
+                            id="courtDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Nome do responsável</label>
+
+                        <input
+                            type="text"
+                            id="courtName"
+                            placeholder="Digite seu nome"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Horário inicial</label>
+
+                        <input
+                            type="time"
+                            id="courtStart"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Horário final</label>
+
+                        <input
+                            type="time"
+                            id="courtEnd"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Turma</label>
+
+                        <input
+                            type="text"
+                            id="courtClass"
+                            placeholder="Ex.: 2º INFO"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Finalidade do agendamento</label>
+
+                        <textarea
+                            id="courtPurpose"
+                            placeholder="Informe para qual finalidade a quadra será utilizada..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelForm">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-btn">
+                        Confirmar agendamento
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+       
+
+        <div class="modal-content hidden" id="secondCallForm">
+
+            <div class="modal-title">
+
+                <div class="modal-icon orange">
+                    <i class="fa-solid fa-file-circle-exclamation"></i>
+                </div>
+
+                <div>
+                    <span>REQUERIMENTO</span>
+                    <h2>Solicitar 2ª chamada</h2>
+                </div>
+
+            </div>
+
+
+            <form id="makeupForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Nome completo</label>
+
+                        <input
+                            type="text"
+                            id="makeupName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Turma</label>
+
+                        <input
+                            type="text"
+                            id="makeupClass"
+                            placeholder="Ex.: 2º INFO"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Disciplina</label>
+
+                        <input
+                            type="text"
+                            id="makeupSubject"
+                            placeholder="Ex.: Matemática"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Data da avaliação perdida</label>
+
+                        <input
+                            type="date"
+                            id="makeupDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Motivo da ausência</label>
+
+                        <select id="makeupReason" required>
+
+                            <option value="">
+                                Selecione o motivo
+                            </option>
+
+                            <option>
+                                Consulta médica
+                            </option>
+
+                            <option>
+                                Problema de saúde
+                            </option>
+
+                            <option>
+                                Compromisso familiar
+                            </option>
+
+                            <option>
+                                Imprevisto
+                            </option>
+
+                            <option>
+                                Outro
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Detalhes da justificativa</label>
+
+                        <textarea
+                            id="makeupDescription"
+                            placeholder="Explique brevemente o motivo da ausência..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Anexo / comprovante
+                        </label>
+
+                        <div class="upload-box">
+
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                            <span>
+                                Clique para selecionar um arquivo
+                            </span>
+
+                            <small>
+                                Atestado médico, declaração ou outro comprovante
+                            </small>
+
+                            <input
+                                type="file"
+                                id="makeupAttachment"
+                                accept=".pdf,.jpg,.jpeg,.png"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelMakeup">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-btn">
+                        Enviar requerimento
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        
+
+        <div class="modal-content hidden" id="materialsForm">
+
+            <div class="modal-title">
+
+                <div class="modal-icon purple">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <div>
+                    <span>SOLICITAÇÃO</span>
+                    <h2>Solicitar materiais</h2>
+                </div>
+
+            </div>
+
+
+            <form id="materialForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Nome</label>
+
+                        <input
+                            type="text"
+                            id="materialName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Turma</label>
+
+                        <input
+                            type="text"
+                            id="materialClass"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Material</label>
+
+                        <select id="materialType">
+
+                            <option value="Canetas">
+                                Canetas
+                            </option>
+
+                            <option value="Tesouras">
+                                Tesouras
+                            </option>
+
+                            <option value="Tinta">
+                                Tinta
+                            </option>
+
+                            <option value="Pincéis">
+                                Pincéis
+                            </option>
+
+                            <option value="Papel">
+                                Papel
+                            </option>
+
+                            <option value="Cartolina">
+                                Cartolina
+                            </option>
+
+                            <option value="Lápis">
+                                Lápis
+                            </option>
+
+                            <option value="Borracha">
+                                Borracha
+                            </option>
+
+                            <option value="Cola">
+                                Cola
+                            </option>
+
+                            <option value="Outros">
+                                Outros
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Quantidade</label>
+
+                        <input
+                            type="number"
+                            id="materialQuantity"
+                            min="1"
+                            value="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Finalidade</label>
+
+                        <input
+                            type="text"
+                            id="materialPurpose"
+                            placeholder="Ex.: Trabalho escolar"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Observações</label>
+
+                        <textarea
+                            id="materialDescription"
+                            placeholder="Informe detalhes adicionais..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelMaterial">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-btn">
+                        Enviar solicitação
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        
+
+        <div class="modal-content hidden" id="eventForm">
+
+            <div class="modal-title">
+
+                <div class="modal-icon green">
+                    <i class="fa-regular fa-calendar-plus"></i>
+                </div>
+
+                <div>
+                    <span>AGENDA</span>
+                    <h2>Novo compromisso</h2>
+                </div>
+
+            </div>
+
+
+            <form id="newEventForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Data</label>
+
+                        <input
+                            type="date"
+                            id="eventDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Horário</label>
+
+                        <input
+                            type="time"
+                            id="eventTime"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Título</label>
+
+                        <input
+                            type="text"
+                            id="eventTitle"
+                            placeholder="Ex.: Reunião de grupo"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Descrição</label>
+
+                        <textarea
+                            id="eventDescription"
+                            placeholder="Digite uma descrição para o compromisso..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelEvent">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-btn">
+                        Adicionar compromisso
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="modal-overlay" id="settingsModal">
+
+    <div class="modal">
+
+        <button class="close-modal" id="closeSettingsModal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+
+        <div class="modal-content" id="settingsForm">
+
+            <div class="modal-title">
+
+                <div class="modal-icon green">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+
+                <div>
+                    <span>PREFERÊNCIAS</span>
+                    <h2>Configurações</h2>
+                </div>
+
+            </div>
+
+
+            <div class="settings-list">
+
+                <div class="settings-row">
+
+                    <div>
+                        <strong>Modo escuro</strong>
+                        <small>Ativa um tema mais escuro para o painel.</small>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="switch-slider"></span>
+                    </label>
+
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div>
+                        <strong>Notificações</strong>
+                        <small>Exibe o contador de solicitações pendentes no sino.</small>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div>
+                        <strong>Tamanho da fonte</strong>
+                        <small>Ajusta o tamanho do texto do painel.</small>
+                    </div>
+
+                    <select id="fontSizeSelect">
+                        <option value="normal">Normal</option>
+                        <option value="grande">Grande</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="toast" id="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastMessage">
+        Solicitação enviada!
+    </span>
+
+</div>
+
+
+<script src="script.js">
+</script>
+
+</body>
+</html>
