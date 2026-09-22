@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Achados & Perdidos | Portal do Campus</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div>
+                <strong>Achados & Perdidos</strong>
+                <span>Portal do Campus</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <button class="nav-item active" data-section="inicio">
+                <i class="fa-solid fa-house"></i>
+                <span>Início</span>
+            </button>
+
+            <button class="nav-item" data-section="perdidos">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>Itens perdidos</span>
+            </button>
+
+            <button class="nav-item" data-section="achados">
+                <i class="fa-solid fa-box-open"></i>
+                <span>Itens encontrados</span>
+            </button>
+
+            <button class="nav-item" data-section="meus-itens">
+                <i class="fa-solid fa-clipboard-list"></i>
+                <span>Meus registros</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="nav-item" id="settingsButton">
+                <i class="fa-solid fa-gear"></i>
+                <span>Configurações</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="topbar-title">
+                <strong>Achados & Perdidos</strong>
+                <span>Campus São José de Ribamar</span>
+            </div>
+
+            <div class="topbar-actions">
+
+                <button class="notification-button" id="notificationButton">
+                    <i class="fa-regular fa-bell"></i>
+                    <span id="notificationCount">0</span>
+                </button>
+
+                <div class="profile">
+                    <div class="profile-avatar">A</div>
+
+                    <div class="profile-info">
+                        <strong>Estudante</strong>
+                        <span>Portal do aluno</span>
+                    </div>
+                </div>
+
+                <div class="notification-panel" id="notificationPanel">
+
+                    <div class="notification-header">
+                        <strong>Notificações</strong>
+
+                        <button id="clearNotifications">
+                            Limpar
+                        </button>
+                    </div>
+
+                    <div id="notificationList">
+                        <div class="notification-empty">
+                            <i class="fa-regular fa-bell-slash"></i>
+                            <p>Nenhuma notificação.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             INÍCIO
+        ========================== -->
+
+        <section class="section active" id="inicio">
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <span class="eyebrow">
+                        SISTEMA DO CAMPUS
+                    </span>
+
+                    <h1>
+                        Encontrou ou perdeu alguma coisa?
+                    </h1>
+
+                    <p>
+                        Registre objetos perdidos ou encontrados e ajude
+                        a devolver pertences aos seus donos.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <button class="primary-button"
+                                data-open-form="perdido">
+                            <i class="fa-solid fa-circle-question"></i>
+                            Perdi um item
+                        </button>
+
+                        <button class="secondary-button"
+                                data-open-form="achado">
+                            <i class="fa-solid fa-box-open"></i>
+                            Encontrei um item
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="hero-illustration">
+
+                    <div class="illustration-circle">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+                    <div class="floating-card card-one">
+                        <i class="fa-solid fa-key"></i>
+                        <span>Chaves</span>
+                    </div>
+
+                    <div class="floating-card card-two">
+                        <i class="fa-solid fa-wallet"></i>
+                        <span>Carteira</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ESTATÍSTICAS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+
+                    <div>
+                        <span>Encontrados</span>
+                        <strong id="foundCount">0</strong>
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        <i class="fa-solid fa-circle-question"></i>
+                    </div>
+
+                    <div>
+                        <span>Perdidos</span>
+                        <strong id="lostCount">0</strong>
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+
+                    <div>
+                        <span>Devolvidos</span>
+                        <strong id="returnedCount">0</strong>
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Meus registros</span>
+                        <strong id="myItemsCount">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUSCA -->
+
+            <div class="search-section">
+
+                <div>
+                    <span class="eyebrow">CONSULTAR</span>
+
+                    <h2>
+                        Procure por um item
+                    </h2>
+
+                    <p>
+                        Pesquise objetos encontrados no campus.
+                    </p>
+                </div>
+
+                <div class="search-bar">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="homeSearch"
+                        placeholder="Ex.: mochila preta, celular, chave..."
+                    >
+
+                    <button id="homeSearchButton">
+                        Buscar
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ITENS RECENTES -->
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">RECENTES</span>
+
+                    <h2>
+                        Itens encontrados recentemente
+                    </h2>
+                </div>
+
+                <button class="text-button"
+                        data-section-target="achados">
+                    Ver todos
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+            <div class="items-grid" id="recentItems"></div>
+
+        </section>
+
+
+        <!-- =========================
+             PERDIDOS
+        ========================== -->
+
+        <section class="section" id="perdidos">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="eyebrow">ITENS PERDIDOS</span>
+
+                    <h1>
+                        Objetos que foram perdidos
+                    </h1>
+
+                    <p>
+                        Consulte registros de pessoas que estão procurando
+                        seus pertences.
+                    </p>
+                </div>
+
+                <button class="primary-button"
+                        data-open-form="perdido">
+                    <i class="fa-solid fa-plus"></i>
+                    Registrar perda
+                </button>
+
+            </div>
+
+            <div class="filters">
+
+                <div class="filter-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="lostSearch"
+                        placeholder="Buscar item..."
+                    >
+
+                </div>
+
+                <select id="lostCategory">
+                    <option value="all">Todas as categorias</option>
+                    <option value="eletronicos">Eletrônicos</option>
+                    <option value="documentos">Documentos</option>
+                    <option value="acessorios">Acessórios</option>
+                    <option value="materiais">Materiais escolares</option>
+                    <option value="roupas">Roupas</option>
+                    <option value="outros">Outros</option>
+                </select>
+
+                <select id="lostLocation">
+                    <option value="all">Todos os locais</option>
+                    <option value="sala">Salas</option>
+                    <option value="biblioteca">Biblioteca</option>
+                    <option value="quadra">Quadra</option>
+                    <option value="cantina">Cantina</option>
+                    <option value="patio">Pátio</option>
+                    <option value="outros">Outros</option>
+                </select>
+
+            </div>
+
+            <div class="items-grid" id="lostItems"></div>
+
+        </section>
+
+
+        <!-- =========================
+             ACHADOS
+        ========================== -->
+
+        <section class="section" id="achados">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="eyebrow">ITENS ENCONTRADOS</span>
+
+                    <h1>
+                        Objetos encontrados
+                    </h1>
+
+                    <p>
+                        Veja objetos encontrados e registrados no campus.
+                    </p>
+                </div>
+
+                <button class="primary-button"
+                        data-open-form="achado">
+                    <i class="fa-solid fa-plus"></i>
+                    Registrar achado
+                </button>
+
+            </div>
+
+            <div class="filters">
+
+                <div class="filter-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="foundSearch"
+                        placeholder="Buscar item..."
+                    >
+
+                </div>
+
+                <select id="foundCategory">
+                    <option value="all">Todas as categorias</option>
+                    <option value="eletronicos">Eletrônicos</option>
+                    <option value="documentos">Documentos</option>
+                    <option value="acessorios">Acessórios</option>
+                    <option value="materiais">Materiais escolares</option>
+                    <option value="roupas">Roupas</option>
+                    <option value="outros">Outros</option>
+                </select>
+
+                <select id="foundLocation">
+                    <option value="all">Todos os locais</option>
+                    <option value="sala">Salas</option>
+                    <option value="biblioteca">Biblioteca</option>
+                    <option value="quadra">Quadra</option>
+                    <option value="cantina">Cantina</option>
+                    <option value="patio">Pátio</option>
+                    <option value="outros">Outros</option>
+                </select>
+
+            </div>
+
+            <div class="items-grid" id="foundItems"></div>
+
+        </section>
+
+
+        <!-- =========================
+             MEUS REGISTROS
+        ========================== -->
+
+        <section class="section" id="meus-itens">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="eyebrow">MEUS REGISTROS</span>
+
+                    <h1>
+                        Meus itens
+                    </h1>
+
+                    <p>
+                        Acompanhe os objetos que você registrou.
+                    </p>
+                </div>
+
+                <button class="primary-button"
+                        data-open-form="achado">
+                    <i class="fa-solid fa-plus"></i>
+                    Novo registro
+                </button>
+
+            </div>
+
+            <div class="my-items-tabs">
+
+                <button class="tab active" data-my-filter="all">
+                    Todos
+                </button>
+
+                <button class="tab" data-my-filter="perdido">
+                    Perdidos
+                </button>
+
+                <button class="tab" data-my-filter="achado">
+                    Encontrados
+                </button>
+
+                <button class="tab" data-my-filter="devolvido">
+                    Devolvidos
+                </button>
+
+            </div>
+
+            <div class="my-items-list" id="myItems"></div>
+
+        </section>
+
+        <footer>
+            Achados & Perdidos · Portal do Campus
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     MODAL DE CADASTRO
+========================== -->
+
+<div class="modal-overlay" id="itemModal">
+
+    <div class="modal">
+
+        <button class="close-modal" id="closeItemModal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-header">
+
+            <div class="modal-icon">
+                <i class="fa-solid fa-box-open"></i>
+            </div>
+
+            <div>
+                <span class="eyebrow">NOVO REGISTRO</span>
+                <h2 id="modalTitle">
+                    Registrar item
+                </h2>
+
+                <p id="modalDescription">
+                    Informe os detalhes do objeto.
+                </p>
+            </div>
+
+        </div>
+
+        <form id="itemForm">
+
+            <input type="hidden" id="itemType">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="itemName">
+                        Nome do item
+                    </label>
+
+                    <input
+                        type="text"
+                        id="itemName"
+                        placeholder="Ex.: Mochila preta"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="itemCategory">
+                        Categoria
+                    </label>
+
+                    <select id="itemCategory" required>
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="eletronicos">
+                            Eletrônicos
+                        </option>
+
+                        <option value="documentos">
+                            Documentos
+                        </option>
+
+                        <option value="acessorios">
+                            Acessórios
+                        </option>
+
+                        <option value="materiais">
+                            Materiais escolares
+                        </option>
+
+                        <option value="roupas">
+                            Roupas
+                        </option>
+
+                        <option value="outros">
+                            Outros
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="itemDate">
+                        Data
+                    </label>
+
+                    <input
+                        type="date"
+                        id="itemDate"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="itemLocation">
+                        Local
+                    </label>
+
+                    <select id="itemLocation" required>
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="sala">
+                            Sala de aula
+                        </option>
+
+                        <option value="biblioteca">
+                            Biblioteca
+                        </option>
+
+                        <option value="quadra">
+                            Quadra
+                        </option>
+
+                        <option value="cantina">
+                            Cantina
+                        </option>
+
+                        <option value="patio">
+                            Pátio
+                        </option>
+
+                        <option value="outros">
+                            Outro local
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group full">
+
+                    <label for="itemDescription">
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="itemDescription"
+                        placeholder="Descreva características que ajudem a identificar o item..."
+                        required
+                    ></textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="itemContact">
+                        Contato
+                    </label>
+
+                    <input
+                        type="text"
+                        id="itemContact"
+                        placeholder="Telefone ou e-mail"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="itemImage">
+                        Foto
+                    </label>
+
+                    <input
+                        type="file"
+                        id="itemImage"
+                        accept="image/*"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelItem">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button">
+                    <i class="fa-solid fa-check"></i>
+                    Salvar registro
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL DE DETALHES
+========================== -->
+
+<div class="modal-overlay" id="detailsModal">
+
+    <div class="modal details-modal">
+
+        <button class="close-modal" id="closeDetailsModal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div id="detailsContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL CONFIGURAÇÕES
+========================== -->
+
+<div class="modal-overlay" id="settingsModal">
+
+    <div class="modal small-modal">
+
+        <button class="close-modal" id="closeSettingsModal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-header">
+
+            <div class="modal-icon">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+
+            <div>
+                <span class="eyebrow">PREFERÊNCIAS</span>
+                <h2>Configurações</h2>
+            </div>
+
+        </div>
+
+        <div class="settings-list">
+
+            <div class="setting-row">
+
+                <div>
+                    <strong>Modo escuro</strong>
+                    <span>Alterar aparência do sistema.</span>
+                </div>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="darkMode">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+            <div class="setting-row">
+
+                <div>
+                    <strong>Notificações</strong>
+                    <span>Receber avisos sobre seus registros.</span>
+                </div>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="notifications"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastMessage">
+        Registro salvo com sucesso!
+    </span>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
