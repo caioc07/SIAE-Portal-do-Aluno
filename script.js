@@ -813,100 +813,12 @@ document
 
 
 document
-    .getElementById("newEventForm")
-    .addEventListener(
-        "submit",
-        event => {
-
-            event.preventDefault();
-
-
-            const newEvent = {
-
-                id:
-                    Date.now(),
-
-                date:
-                    document
-                        .getElementById(
-                            "eventDate"
-                        )
-                        .value,
-
-                time:
-                    document
-                        .getElementById(
-                            "eventTime"
-                        )
-                        .value,
-
-                title:
-                    document
-                        .getElementById(
-                            "eventTitle"
-                        )
-                        .value,
-
-                description:
-                    document
-                        .getElementById(
-                            "eventDescription"
-                        )
-                        .value
-
-            };
-
-
-            events.push(
-                newEvent
-            );
-
-
-            saveEvents();
-
-
-            selectedDate =
-                new Date(
-                    newEvent.date +
-                    "T00:00:00"
-                );
-
-
-            currentDate =
-                new Date(
-                    selectedDate
-                );
-
-
-            renderCalendar();
-
-            renderEvents();
-
-
-            closeModal();
-
-
-            event.target.reset();
-
-
-            showToast(
-                "Compromisso adicionado à agenda!"
-            );
-
-        }
-    );
-
-
-
-
-document
     .getElementById("courtForm")
     .addEventListener(
         "submit",
         event => {
 
             event.preventDefault();
-
 
             const start =
                 document
@@ -915,7 +827,6 @@ document
                     )
                     .value;
 
-
             const end =
                 document
                     .getElementById(
@@ -923,17 +834,12 @@ document
                     )
                     .value;
 
-
             if (start >= end) {
-
                 showToast(
                     "O horário final deve ser maior que o inicial."
                 );
-
                 return;
-
             }
-
 
             const date =
                 document
@@ -942,6 +848,18 @@ document
                     )
                     .value;
 
+            const hoje = new Date();
+            const anoAtual = hoje.getFullYear();
+            const mesAtual = hoje.getMonth() + 1; 
+
+            const [anoSelecionado, mesSelecionado] = date.split('-');
+
+            if (parseInt(anoSelecionado) !== anoAtual || parseInt(mesSelecionado) < mesAtual) {
+                showToast(
+                    "O agendamento só pode ser feito para os meses restantes deste ano."
+                );
+                return;
+            }
 
             const request = {
 
@@ -991,20 +909,15 @@ document
 
             };
 
-
             requests.unshift(
                 request
             );
 
-
             saveRequests();
-
 
             closeModal();
 
-
             event.target.reset();
-
 
             updateNotification();
 
@@ -1014,6 +927,55 @@ document
 
         }
     );
+
+document
+    .getElementById("courtForm")
+    .addEventListener("submit", event => {
+
+        event.preventDefault();
+
+        const start = document.getElementById("courtStart").value;
+        const end = document.getElementById("courtEnd").value;
+
+        if (start >= end) {
+            showToast("O horário final deve ser maior que o inicial.");
+            return;
+        }
+
+        const date = document.getElementById("courtDate").value;
+
+        const hoje = new Date();
+        const anoAtual = hoje.getFullYear();
+        const mesAtual = hoje.getMonth() + 1; 
+
+        const [anoSelecionado, mesSelecionado] = date.split('-');
+
+        if (parseInt(anoSelecionado) !== anoAtual || parseInt(mesSelecionado) !== mesAtual) {
+            showToast("O agendamento só pode ser feito para o mês e ano atuais.");
+            return;
+        }
+
+        const request = {
+            id: Date.now(),
+            type: "Agendamento de quadra",
+            icon: "fa-calendar-check",
+            date: new Date().toISOString(),
+            details: `${date} · ${start} às ${end}`,
+            status: "Pendente",
+            data: {
+                name: document.getElementById("courtName").value,
+                class: document.getElementById("courtClass").value,
+                purpose: document.getElementById("courtPurpose").value
+            }
+        };
+
+        requests.unshift(request);
+        saveRequests();
+        closeModal();
+        event.target.reset();
+        updateNotification();
+        showToast("Agendamento enviado com sucesso!");
+    });
 
 
 
@@ -1158,6 +1120,11 @@ document
                         "materialQuantity"
                     )
                     .value;
+
+            if (Number(quantity) > 100) {
+                showToast("A quantidade máxima permitida é 100 unidades."); 
+                return; 
+            }
 
 
             const request = {
